@@ -1,5 +1,6 @@
 package org.example.creatorstore.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,8 +34,8 @@ public class Order {
     @Column(nullable = false)
     private String status;
 
-
-    @OneToMany(mappedBy = "order")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
 
     @Column(name = "created_at")
